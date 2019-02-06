@@ -21,6 +21,7 @@ namespace ConnectFour
             createBoard();
             //playGame();
         }
+
         /*
          * Method to create the game board for Connnect Four
          * 
@@ -94,15 +95,20 @@ namespace ConnectFour
 
                 if (currPlayer == 1)
                 {
+                    //MessageBox.Show("Player 1's Turn!", "Connect Four", MessageBoxButtons.OK, MessageBoxIcon.Information);
                     gameGrid[column, row - 1].BackColor = Color.Orange;
+                    currPlayer = 2;
                 }
                 else
                 {
+                    //MessageBox.Show("Player 2's Turn!", "Connect Four", MessageBoxButtons.OK, MessageBoxIcon.Information);
                     gameGrid[column, row - 1].BackColor = Color.Red;
+                    currPlayer = 1;
                 }
             }
 
             playGame();
+
         }
 
 
@@ -113,14 +119,11 @@ namespace ConnectFour
         {
             bool won = false;
             MessageBox.Show("Welcome to Connect Four - Click OK to begin!", "Welcome", MessageBoxButtons.OK, MessageBoxIcon.Information);
-            currPlayer = 1;
-            MessageBox.Show("Player 1's Turn!", "Connect Four", MessageBoxButtons.OK, MessageBoxIcon.Information);
-            currPlayer = 2;
-            MessageBox.Show("Player 2's Turn!", "Connect Four", MessageBoxButtons.OK, MessageBoxIcon.Information);
-            //if (btn[0, 6].BackColor == Color.Yellow)
-            //{
-            //    MessageBox.Show("The element at X = 1 and Y = 7 is ORANGE", "Debug", MessageBoxButtons.OK, MessageBoxIcon.Information);
-            //}
+            
+            if (gameGrid[0, 5].BackColor == Color.Red)
+            {
+                MessageBox.Show("The element at X = 1 and Y = 7 is RED", "Debug", MessageBoxButtons.OK, MessageBoxIcon.Information);
+            }
 
             return won;
         }
