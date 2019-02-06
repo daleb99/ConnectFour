@@ -18,8 +18,7 @@ namespace ConnectFour
         public Form1()
         {
             InitializeComponent();
-            createBoard();
-            //playGame();
+            playGame();
         }
 
         /*
@@ -90,24 +89,26 @@ namespace ConnectFour
                 gameGrid[column, row].BackColor = Color.White;
                 row++;
             }
-            if (row != 1)
-            {
 
+            if (row != 0)
+            {
                 if (currPlayer == 1)
                 {
                     //MessageBox.Show("Player 1's Turn!", "Connect Four", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    
                     gameGrid[column, row - 1].BackColor = Color.Orange;
+                    LblCurrentPlayer.Text = "Current Player: 1";
                     currPlayer = 2;
                 }
                 else
                 {
                     //MessageBox.Show("Player 2's Turn!", "Connect Four", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    
                     gameGrid[column, row - 1].BackColor = Color.Red;
+                    LblCurrentPlayer.Text = "Current Player: 2";
                     currPlayer = 1;
                 }
             }
-
-            playGame();
 
         }
 
@@ -117,12 +118,20 @@ namespace ConnectFour
          */
         private bool playGame()
         {
+            createBoard();
+
             bool won = false;
             MessageBox.Show("Welcome to Connect Four - Click OK to begin!", "Welcome", MessageBoxButtons.OK, MessageBoxIcon.Information);
-            
+            LblCurrentPlayer.Text = "Current Player: 1";
+            currPlayer = 1;
+
             if (gameGrid[0, 5].BackColor == Color.Red)
             {
                 MessageBox.Show("The element at X = 1 and Y = 7 is RED", "Debug", MessageBoxButtons.OK, MessageBoxIcon.Information);
+            }
+            else if (gameGrid[0, 5].BackColor == Color.Orange)
+            {
+                MessageBox.Show("The element at X = 1 and Y = 7 is ORANGE", "Debug", MessageBoxButtons.OK, MessageBoxIcon.Information);
             }
 
             return won;

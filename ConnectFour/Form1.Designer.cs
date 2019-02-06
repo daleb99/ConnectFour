@@ -34,6 +34,7 @@
             this.exitToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.helpToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.gameRulesToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.LblCurrentPlayer = new System.Windows.Forms.Label();
             this.menuStrip1.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -44,7 +45,7 @@
             this.helpToolStripMenuItem});
             this.menuStrip1.Location = new System.Drawing.Point(0, 0);
             this.menuStrip1.Name = "menuStrip1";
-            this.menuStrip1.Size = new System.Drawing.Size(556, 24);
+            this.menuStrip1.Size = new System.Drawing.Size(534, 24);
             this.menuStrip1.TabIndex = 0;
             this.menuStrip1.Text = "menuStrip1";
             // 
@@ -83,11 +84,22 @@
             this.gameRulesToolStripMenuItem.Size = new System.Drawing.Size(136, 22);
             this.gameRulesToolStripMenuItem.Text = "Game Rules";
             // 
+            // LblCurrentPlayer
+            // 
+            this.LblCurrentPlayer.AutoSize = true;
+            this.LblCurrentPlayer.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.LblCurrentPlayer.Location = new System.Drawing.Point(60, 30);
+            this.LblCurrentPlayer.Name = "LblCurrentPlayer";
+            this.LblCurrentPlayer.Size = new System.Drawing.Size(117, 20);
+            this.LblCurrentPlayer.TabIndex = 1;
+            this.LblCurrentPlayer.Text = "Current Player: ";
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(556, 634);
+            this.ClientSize = new System.Drawing.Size(534, 611);
+            this.Controls.Add(this.LblCurrentPlayer);
             this.Controls.Add(this.menuStrip1);
             this.MainMenuStrip = this.menuStrip1;
             this.Name = "Form1";
@@ -107,6 +119,7 @@
         private System.Windows.Forms.ToolStripMenuItem exitToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem helpToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem gameRulesToolStripMenuItem;
+        private System.Windows.Forms.Label LblCurrentPlayer;
     }
 }
 
