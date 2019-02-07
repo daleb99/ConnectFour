@@ -75,41 +75,98 @@ namespace ConnectFour
         {
             int column = Convert.ToInt32(((Button)sender).Text) - 1;
             int row = 0;
-            while (row < gameGrid.GetLength(1) && gameGrid[column, row].BackColor == Color.White)
-            {
-                if (currPlayer == 1)
-                {
-                    gameGrid[column, row].BackColor = Color.Orange;
-                }
-                else
-                {
-                    gameGrid[column, row].BackColor = Color.Red;
-                }
-                wait(100);
-                gameGrid[column, row].BackColor = Color.White;
-                row++;
-            }
+            bool won = false;
+            int winner = 0;
 
-            if (row != 0)
+            while (!won)
             {
-                if (currPlayer == 1)
+
+                for (int x = 7; x >= 0; --x)
                 {
-                    //MessageBox.Show("Player 1's Turn!", "Connect Four", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                    
-                    gameGrid[column, row - 1].BackColor = Color.Orange;
-                    LblCurrentPlayer.Text = "Current Player: 1";
-                    currPlayer = 2;
+                    for (int y = 6; y >= 0; --x)
+                    {
+                        if (gameGrid[x, y].BackColor == Color.Orange &&
+                            gameGrid[x - 1, y - 1].BackColor == Color.Orange &&
+                            gameGrid[x - 2, y - 2].BackColor == Color.Orange &&
+                            gameGrid[x - 3, y - 3].BackColor == Color.Orange)
+                        {
+                            won = true;
+                            winner = 1;
+                        }
+
+                        if (gameGrid[x, y].BackColor == Color.Orange &&
+                            gameGrid[x, y - 1].BackColor == Color.Orange &&
+                            gameGrid[x, y - 2].BackColor == Color.Orange &&
+                            gameGrid[x, y - 3].BackColor == Color.Orange)
+                        {
+                            won = true;
+                            winner = 1;
+                        }
+
+                        if (gameGrid[x, y].BackColor == Color.Orange &&
+                            gameGrid[x - 1, y].BackColor == Color.Orange &&
+                            gameGrid[x - 2, y].BackColor == Color.Orange &&
+                            gameGrid[x - 3, y].BackColor == Color.Orange)
+                        {
+                            won = true;
+                            winner = 1;
+                        }
+
+                        if (gameGrid[x, y].BackColor == Color.Orange &&
+                            gameGrid[x - 1, y + 1].BackColor == Color.Orange &&
+                            gameGrid[x - 2, y + 2].BackColor == Color.Orange &&
+                            gameGrid[x - 3, y + 3].BackColor == Color.Orange)
+                        {
+                            won = true;
+                            winner = 1;
+                        }
+
+                        if (gameGrid[x, y].BackColor == Color.Orange &&
+                            gameGrid[x, y + 1].BackColor == Color.Orange &&
+                            gameGrid[x, y + 2].BackColor == Color.Orange &&
+                            gameGrid[x, y + 3].BackColor == Color.Orange)
+                        {
+                            won = true;
+                            winner = 1;
+                        }
+                    }
                 }
-                else
+
+                while (row < gameGrid.GetLength(1) && gameGrid[column, row].BackColor == Color.White)
                 {
-                    //MessageBox.Show("Player 2's Turn!", "Connect Four", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                    
-                    gameGrid[column, row - 1].BackColor = Color.Red;
-                    LblCurrentPlayer.Text = "Current Player: 2";
-                    currPlayer = 1;
+                    if (currPlayer == 1)
+                    {
+                        gameGrid[column, row].BackColor = Color.Orange;
+                    }
+                    else
+                    {
+                        gameGrid[column, row].BackColor = Color.Red;
+                    }
+                    wait(100);
+                    gameGrid[column, row].BackColor = Color.White;
+                    row++;
+                }
+
+                if (row != 0)
+                {
+                    if (currPlayer == 1)
+                    {
+                        //MessageBox.Show("Player 1's Turn!", "Connect Four", MessageBoxButtons.OK, MessageBoxIcon.Information);
+
+                        gameGrid[column, row - 1].BackColor = Color.Orange;
+                        LblCurrentPlayer.Text = "Current Player: 1";
+                        currPlayer = 2;
+                    }
+                    else
+                    {
+                        //MessageBox.Show("Player 2's Turn!", "Connect Four", MessageBoxButtons.OK, MessageBoxIcon.Information);
+
+                        gameGrid[column, row - 1].BackColor = Color.Red;
+                        LblCurrentPlayer.Text = "Current Player: 2";
+                        currPlayer = 1;
+                    }
                 }
             }
-
         }
 
 
@@ -121,7 +178,7 @@ namespace ConnectFour
             createBoard();
 
             bool won = false;
-            MessageBox.Show("Welcome to Connect Four - Click OK to begin!", "Welcome", MessageBoxButtons.OK, MessageBoxIcon.Information);
+            //MessageBox.Show("Welcome to Connect Four - Click OK to begin!", "Welcome", MessageBoxButtons.OK, MessageBoxIcon.Information);
             LblCurrentPlayer.Text = "Current Player: 1";
             currPlayer = 1;
 
