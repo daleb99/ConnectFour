@@ -14,7 +14,7 @@ namespace ConnectFour
     {
         Button[] selection = new Button[7]; // Stores the buttons used to select player turn
         Button[,] gameGrid = new Button[7, 6]; // Stores the buttons used to represent the grid
-        int currPlayer = 0;
+        int currPlayer = 1;
         public Form1()
         {
             InitializeComponent();
@@ -77,10 +77,16 @@ namespace ConnectFour
             int row = 0;
             bool won = false;
             int winner = 0;
-        
+
+            //disable buttons for the time of animation
+            for (int i = 0; i < selection.GetLength(0); i++)
+            {
+                selection[i].Enabled = false;
+            }
 
                 while (row < gameGrid.GetLength(1) && gameGrid[column, row].BackColor == Color.White)
                 {
+            
                     if (currPlayer == 1)
                     {
                         gameGrid[column, row].BackColor = Color.Orange;
@@ -100,7 +106,7 @@ namespace ConnectFour
                     //MessageBox.Show("Player 1's Turn!", "Connect Four", MessageBoxButtons.OK, MessageBoxIcon.Information);
 
                     gameGrid[column, row - 1].BackColor = Color.Orange;
-                    LblCurrentPlayer.Text = "Current Player: 1";
+                    LblCurrentPlayer.Text = "Current Player: 2";
                     currPlayer = 2;
                 }
                 else
@@ -108,11 +114,13 @@ namespace ConnectFour
                     //MessageBox.Show("Player 2's Turn!", "Connect Four", MessageBoxButtons.OK, MessageBoxIcon.Information);
 
                     gameGrid[column, row - 1].BackColor = Color.Red;
-                    LblCurrentPlayer.Text = "Current Player: 2";
+                    LblCurrentPlayer.Text = "Current Player: 1";
                     currPlayer = 1;
                 }
             }
-
+                
+            
+            
             //check for horizontal win
             for (int x = 0; x < 4; x++)
             {
@@ -125,7 +133,17 @@ namespace ConnectFour
                     {
                         won = true;
                         winner = 1;
-                        MessageBox.Show("you won", "winner", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                        MessageBox.Show("Player 1 won", "Game over", MessageBoxButtons.OK, MessageBoxIcon.Information);
+
+                    }
+                    if (gameGrid[x, y].BackColor == Color.Red &&
+                        gameGrid[x + 1, y].BackColor == Color.Red &&
+                        gameGrid[x + 2, y].BackColor == Color.Red &&
+                        gameGrid[x + 3, y].BackColor == Color.Red)
+                    {
+                        won = true;
+                        winner = 2;
+                        MessageBox.Show("Player 2 won", "Game over", MessageBoxButtons.OK, MessageBoxIcon.Information);
 
                     }
                 }
@@ -142,7 +160,17 @@ namespace ConnectFour
                     {
                         won = true;
                         winner = 1;
-                        MessageBox.Show("you won", "winner", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                        MessageBox.Show("Player 1 won", "Game over", MessageBoxButtons.OK, MessageBoxIcon.Information);
+
+                    }
+                    else if (gameGrid[x, y].BackColor == Color.Red &&
+                        gameGrid[x, y + 1].BackColor == Color.Red &&
+                        gameGrid[x, y + 2].BackColor == Color.Red &&
+                        gameGrid[x, y + 3].BackColor == Color.Red)
+                    {
+                        won = true;
+                        winner = 2;
+                        MessageBox.Show("Player 2 won", "Game over", MessageBoxButtons.OK, MessageBoxIcon.Information);
 
                     }
                 }
@@ -159,7 +187,17 @@ namespace ConnectFour
                     {
                         won = true;
                         winner = 1;
-                        MessageBox.Show("you won", "winner", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                        MessageBox.Show("Player 1 won", "Game over", MessageBoxButtons.OK, MessageBoxIcon.Information);
+
+                    }
+                    else if (gameGrid[x, y].BackColor == Color.Red &&
+                        gameGrid[x + 1, y + 1].BackColor == Color.Red &&
+                        gameGrid[x + 2, y + 2].BackColor == Color.Red &&
+                        gameGrid[x + 3, y + 3].BackColor == Color.Red)
+                    {
+                        won = true;
+                        winner = 2;
+                        MessageBox.Show("Player 2 won", "Game over", MessageBoxButtons.OK, MessageBoxIcon.Information);
 
                     }
                 }
@@ -176,14 +214,27 @@ namespace ConnectFour
                     {
                         won = true;
                         winner = 1;
-                        MessageBox.Show("you won", "winner", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                        MessageBox.Show("Player 1 won", "Game over", MessageBoxButtons.OK, MessageBoxIcon.Information);
+
+                    }
+                    else if (gameGrid[x, y].BackColor == Color.Red &&
+                        gameGrid[x + 1, y - 1].BackColor == Color.Red &&
+                        gameGrid[x + 2, y - 2].BackColor == Color.Red &&
+                        gameGrid[x + 3, y - 3].BackColor == Color.Red)
+                    {
+                        won = true;
+                        winner = 2;
+                        MessageBox.Show("Player 2 won", "Game over", MessageBoxButtons.OK, MessageBoxIcon.Information);
 
                     }
                 }
             }
-
-            
+            //enable buttons after player's move
+            for (int i = 0; i < selection.GetLength(0); i++)
+            {
+                selection[i].Enabled = true;
             }
+        }
         
 
 
@@ -251,5 +302,11 @@ namespace ConnectFour
                 Application.DoEvents();
             }
         }
+
+        private void gameRulesToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            MessageBox.Show("Basic game rules go here", "Rules", MessageBoxButtons.OK, MessageBoxIcon.Information);
+        }
+
     }
 }
